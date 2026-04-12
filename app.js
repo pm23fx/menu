@@ -12,16 +12,16 @@ const categories = [
 ];
 
 const commonAddons = {
-    chicken: { name: "Chicken", price: 10 },
-    fish: { name: "Fish", price: 12 },
-    turkey: { name: "Turkey", price: 12 },
-    beef: { name: "Beef", price: 9 },
-    egg: { name: "Boiled egg", price: 3 },
-    water: { name: "Water", price: 2 },
-    malt: { name: "Malt drink", price: 5 },
-    extraStew: { name: "Extra stew", price: 4 },
-    extraSoup: { name: "Extra soup", price: 6 },
-    plantain: { name: "Fried plantain", price: 7 }
+    chicken: { name: "Chicken", price: 10, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken%20barbecue.jpg" },
+    fish: { name: "Fish", price: 12, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20fish%20-%20flickr%20-%20cyclonebill.jpg" },
+    turkey: { name: "Turkey", price: 12, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Roast%20turkey.jpg" },
+    beef: { name: "Beef", price: 9, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Beef%20steak.jpg" },
+    egg: { name: "Boiled egg", price: 3, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Boiling%20Eggs.jpg" },
+    water: { name: "Water", price: 2, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Bottled%20Water%20%2851839803614%29.jpg" },
+    malt: { name: "Malt drink", price: 5, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Soda%20bottle%20shelf.jpg" },
+    extraStew: { name: "Extra stew", price: 4, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Tomato%20stew.jpg" },
+    extraSoup: { name: "Extra soup", price: 6, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Pounded%20yam%20and%20Egusi%20soup.jpg" },
+    plantain: { name: "Fried plantain", price: 7, image: "https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20plantain.jpg" }
 };
 
 const menuItems = [
@@ -33,7 +33,8 @@ const menuItems = [
         emoji: "🍛",
         tag: "Flexible plate",
         description: "Simple rice meal that works well with extra chicken, fish, water, and extra stew.",
-        addons: ["chicken", "fish", "beef", "egg", "water", "malt", "extraStew", "plantain"]
+        addons: ["chicken", "fish", "beef", "egg", "water", "malt", "extraStew", "plantain"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20rice%20and%20chicken.jpg"
     },
     {
         id: 2,
@@ -43,7 +44,8 @@ const menuItems = [
         emoji: "🍚",
         tag: "Party favorite",
         description: "Smoky jollof rice sold by portion with optional proteins and drinks.",
-        addons: ["chicken", "fish", "turkey", "egg", "water", "malt", "plantain"]
+        addons: ["chicken", "fish", "turkey", "egg", "water", "malt", "plantain"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20rice%20and%20chicken.jpg"
     },
     {
         id: 3,
@@ -53,7 +55,8 @@ const menuItems = [
         emoji: "🥘",
         tag: "Popular",
         description: "Colorful fried rice that can be built with turkey, chicken, fish, and drinks.",
-        addons: ["chicken", "fish", "turkey", "egg", "water", "malt", "plantain"]
+        addons: ["chicken", "fish", "turkey", "egg", "water", "malt", "plantain"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Simple%20fried%20rice.jpg"
     },
     {
         id: 4,
@@ -63,7 +66,8 @@ const menuItems = [
         emoji: "🍲",
         tag: "Spicy",
         description: "Traditional ofada rice with sauce. Add extra proteins or drinks as needed.",
-        addons: ["chicken", "fish", "beef", "egg", "water", "malt", "extraStew"]
+        addons: ["chicken", "fish", "beef", "egg", "water", "malt", "extraStew"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Ofada%20rice.jpg"
     },
     {
         id: 5,
@@ -73,7 +77,8 @@ const menuItems = [
         emoji: "🥣",
         tag: "Best seller",
         description: "Egusi meal by portion with optional fish, beef, water, and extra soup.",
-        addons: ["fish", "beef", "water", "malt", "extraSoup"]
+        addons: ["fish", "beef", "water", "malt", "extraSoup"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Pounded%20yam%20and%20Egusi%20soup.jpg"
     },
     {
         id: 6,
@@ -83,7 +88,8 @@ const menuItems = [
         emoji: "🍜",
         tag: "Comfort meal",
         description: "Spinach stew with amala. Add fish, beef, water, or extra soup.",
-        addons: ["fish", "beef", "water", "malt", "extraSoup"]
+        addons: ["fish", "beef", "water", "malt", "extraSoup"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Efo%20riro.jpg"
     },
     {
         id: 7,
@@ -93,7 +99,8 @@ const menuItems = [
         emoji: "🍵",
         tag: "Hearty",
         description: "Ogbono soup meal with customizable extras per order.",
-        addons: ["fish", "beef", "water", "malt", "extraSoup"]
+        addons: ["fish", "beef", "water", "malt", "extraSoup"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Ogbono%20soup.jpg"
     },
     {
         id: 8,
@@ -103,7 +110,8 @@ const menuItems = [
         emoji: "🫔",
         tag: "Side",
         description: "Order as single or multiple portions, with optional drinks.",
-        addons: ["egg", "water", "malt"]
+        addons: ["egg", "water", "malt"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Moin%20Moin.jpg"
     },
     {
         id: 9,
@@ -113,7 +121,8 @@ const menuItems = [
         emoji: "🥯",
         tag: "Quick bite",
         description: "Crispy akara by portion with optional drinks.",
-        addons: ["water", "malt"]
+        addons: ["water", "malt"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Akara.jpg"
     },
     {
         id: 10,
@@ -123,7 +132,8 @@ const menuItems = [
         emoji: "🥩",
         tag: "Grilled",
         description: "Spiced grilled beef portion with optional drinks or extra beef.",
-        addons: ["beef", "water", "malt"]
+        addons: ["beef", "water", "malt"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Suya.jpg"
     },
     {
         id: 11,
@@ -133,7 +143,8 @@ const menuItems = [
         emoji: "🍲",
         tag: "Hot bowl",
         description: "Pepper soup by portion with optional fish, beef, and drinks.",
-        addons: ["fish", "beef", "water", "malt"]
+        addons: ["fish", "beef", "water", "malt"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Pepper%20soup.jpg"
     },
     {
         id: 12,
@@ -143,7 +154,8 @@ const menuItems = [
         emoji: "🍛",
         tag: "Single portion",
         description: "A lighter bowl meal with optional proteins and drinks.",
-        addons: ["chicken", "fish", "water", "malt"]
+        addons: ["chicken", "fish", "water", "malt"],
+        image: "https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20rice%20and%20chicken.jpg"
     }
 ];
 
@@ -234,25 +246,18 @@ function getFilteredItems() {
 }
 
 function renderSpotlight() {
-    const sample = {
-        portions: 1,
-        addons: { chicken: 2, fish: 1, water: 2 }
-    };
-    const extraTotal = Object.entries(sample.addons).reduce((sum, [key, qty]) => sum + commonAddons[key].price * qty, 0);
-    modalDishHero.className = "";
+    const featured = menuItems[0];
     document.getElementById("spotlightCard").innerHTML = `
-        <div class="dish-art rice">
-            <div class="dish-art-inner">
-                <span class="dish-emoji">🍛</span>
-                <span class="badge">Example customization</span>
-                <h2>Rice & Stew Order</h2>
-                <p>1 portion rice & stew + 2 chicken + 1 fish + 2 water.</p>
+        <img src="${featured.image}" alt="${featured.name}">
+        <div class="spotlight-overlay">
+                <span class="badge">Featured meal</span>
+                <h2>${featured.name}</h2>
+                <p>${featured.description}</p>
                 <div class="spotlight-meta">
-                    <span class="mini-pill">${formatCurrency(20 + extraTotal)}</span>
-                    <span class="mini-pill">Portions: 1</span>
-                    <span class="mini-pill">Extras included</span>
+                    <span class="mini-pill">Base ${formatCurrency(featured.basePrice)}</span>
+                    <span class="mini-pill">${featured.addons.length} add-on choices</span>
+                    <span class="mini-pill">Prepared fresh</span>
                 </div>
-            </div>
         </div>
     `;
 }
@@ -275,12 +280,13 @@ function renderMenu() {
 
     menuGrid.innerHTML = filtered.map((item) => `
         <article class="menu-card">
-            <div class="dish-art ${item.category}">
+            <div class="dish-art">
+                <img src="${item.image}" alt="${item.name}">
                 <div class="dish-art-inner">
                     <span class="dish-emoji">${item.emoji}</span>
                     <span class="dish-chip">${item.tag}</span>
                     <strong class="dish-card-title">${item.name}</strong>
-                    <small>Illustrative cover</small>
+                    <small>Helen's Kitchen selection</small>
                 </div>
             </div>
             <div class="menu-body">
@@ -314,7 +320,8 @@ function openCustomizer(dishId) {
     modalDishName.textContent = currentDish.name;
     modalDishDesc.textContent = currentDish.description;
     modalDishHero.innerHTML = `
-        <div class="dish-art ${currentDish.category}">
+        <div class="dish-art">
+            <img src="${currentDish.image}" alt="${currentDish.name}">
             <div class="dish-art-inner">
                 <span class="dish-emoji">${currentDish.emoji}</span>
                 <span class="dish-chip">${currentDish.tag}</span>
@@ -339,9 +346,14 @@ function renderAddonControls() {
         const addon = commonAddons[addonKey];
         return `
             <div class="addon-row">
-                <div class="addon-copy">
-                    <strong>${addon.name}</strong>
-                    <small>${formatCurrency(addon.price)} each</small>
+                <div class="addon-copy-wrap">
+                    <div class="addon-thumb">
+                        <img src="${addon.image}" alt="${addon.name}">
+                    </div>
+                    <div class="addon-copy">
+                        <strong>${addon.name}</strong>
+                        <small>${formatCurrency(addon.price)} each</small>
+                    </div>
                 </div>
                 <div class="qty-stepper">
                     <button class="qty-btn" type="button" data-addon-change="${addonKey}" data-delta="-1">−</button>
@@ -546,6 +558,7 @@ document.getElementById("checkoutBtn").addEventListener("click", checkout);
 document.getElementById("clearCartBtn").addEventListener("click", clearCart);
 document.getElementById("floatingCart").addEventListener("click", () => toggleCart(true));
 document.getElementById("openCartHero").addEventListener("click", () => toggleCart(true));
+document.getElementById("openCartTop").addEventListener("click", () => toggleCart(true));
 document.getElementById("closeCart").addEventListener("click", () => toggleCart(false));
 document.getElementById("closeModal").addEventListener("click", closeCustomizer);
 modal.addEventListener("click", (event) => {

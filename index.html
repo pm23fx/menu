@@ -10,10 +10,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header class="brand-bar">
+        <div class="container brand-inner">
+            <div class="brand-lockup">
+                <div class="brand-logo" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f1c465"/>
+                                <stop offset="100%" stop-color="#c77e16"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="6" y="8" width="52" height="48" rx="16" fill="#6b1d0d"/>
+                        <path d="M18 29h28a8 8 0 0 1-8 8H26a8 8 0 0 1-8-8Z" fill="url(#logoFill)"/>
+                        <path d="M20 24c2-6 6-9 12-9s10 3 12 9" fill="none" stroke="url(#logoFill)" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="24" cy="22" r="2" fill="#f4d58d"/>
+                        <circle cx="32" cy="19" r="2" fill="#f4d58d"/>
+                        <circle cx="40" cy="22" r="2" fill="#f4d58d"/>
+                        <text x="32" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#fff3dd" font-family="Arial, sans-serif">HK</text>
+                    </svg>
+                </div>
+                <div>
+                    <strong>Helen's Kitchen</strong>
+                    <span>Fresh Nigerian meals, prepared to order</span>
+                </div>
+            </div>
+            <button class="btn btn-secondary" id="openCartTop" type="button">View Cart</button>
+        </div>
+    </header>
+
     <header class="hero-shell">
         <div class="container hero-grid">
             <section class="hero-copy">
-                <div class="eyebrow">Talabat-style ordering</div>
+                <div class="eyebrow">Helen's Kitchen</div>
                 <h1>Choose the meal, set the portions, then add your extras.</h1>
                 <p class="hero-text">
                     Each dish opens a customizer so customers can order exactly what they want: more chicken, fish, water, extra proteins, and special instructions.
@@ -33,25 +62,25 @@
                     </div>
                     <div class="stat-card">
                         <strong>Cleaner visuals</strong>
-                        <span>Illustrative dish cards, not wrong photos</span>
+                        <span>Matching web images until your own food photos are ready</span>
                     </div>
                 </div>
             </section>
 
             <section class="hero-panel">
                 <div class="hero-panel-top">
-                    <span class="badge">Build example</span>
-                    <span class="service-pill">1 Rice & stew + 2 chicken + 1 fish + 2 water</span>
+                    <span class="badge">Kitchen highlights</span>
+                    <span class="service-pill">Meals, extras, and delivery notes in one flow</span>
                 </div>
                 <div class="spotlight-card" id="spotlightCard"></div>
                 <div class="service-grid">
                     <div class="service-card">
-                        <strong>How it works</strong>
-                        <span>Tap a meal card, pick portions, choose extras, then add the customized order to cart.</span>
+                        <strong>Brand-first ordering</strong>
+                        <span>Every dish stays under Helen's Kitchen branding, with clearer meal visuals and add-on choices.</span>
                     </div>
                     <div class="service-card">
-                        <strong>Checkout</strong>
-                        <span>The WhatsApp summary lists every selected extra so the kitchen sees the exact request.</span>
+                        <strong>Clear kitchen brief</strong>
+                        <span>Checkout sends portions, extras, and notes so the kitchen sees the exact request.</span>
                     </div>
                 </div>
             </section>
@@ -66,7 +95,7 @@
                     <input id="searchInput" type="text" placeholder="Try rice, stew, egusi, fish, chicken...">
                 </div>
                 <div class="category-row" id="categoryRow"></div>
-                <p class="helper-note">Dish covers below are illustrative placeholders until you replace them with your real meal photos.</p>
+                <p class="helper-note">Dish and add-on images are temporary web-sourced references until you replace them with your own Helen's Kitchen photos.</p>
             </section>
 
             <section class="menu-list-section">
