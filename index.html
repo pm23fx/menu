@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helen's Kitchen — Nigerian Cuisine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===================== HERO / HEADER ===================== -->
+<header class="header">
+    <div class="header-top">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" fill="#D4380D" stroke="#FBBF24" stroke-width="2"/>
+                        <path d="M12 26C12 26 14 18 20 18C26 18 28 26 28 26" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="20" cy="14" r="3" fill="#FBBF24"/>
+                        <path d="M16 24L20 20L24 24" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>Helen's Kitchen</h1>
+                    <p class="brand-tagline">Authentic Nigerian Cuisine</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="cart-btn" id="cartBtn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="hero-badge">🔥 Freshly Made Daily</span>
+            <h2 class="hero-title">Taste the<br><em>Soul of Nigeria</em></h2>
+            <p class="hero-sub">From smoky Suya to rich Egusi — delivered with love</p>
+            <!-- Search Bar -->
+            <div class="search-wrap">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" id="searchInput" placeholder="Search jollof, egusi, suya..." autocomplete="off">
+                <button class="search-clear" id="searchClear" style="display:none;">✕</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ===================== PROMO STRIP ===================== -->
+<section class="promo-strip">
+    <div class="container promo-scroll">
+        <div class="promo-card">
+            <span class="promo-emoji">🚀</span>
+            <div><strong>Fast Delivery</strong><br><small>30-45 mins</small></div>
+        </div>
+        <div class="promo-card">
+            <span class="promo-emoji">🌶️</span>
+            <div><strong>Spice Level</strong><br><small>Your choice</small></div>
+        </div>
+        <div class="promo-card">
+            <span class="promo-emoji">🥘</span>
+            <div><strong>Fresh Daily</strong><br><small>Made to order</small></div>
+        </div>
+        <div class="promo-card">
+            <span class="promo-emoji">⭐</span>
+            <div><strong>4.9 Rating</strong><br><small>500+ reviews</small></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== CATEGORY TABS ===================== -->
+<nav class="category-nav" id="categoryNav">
+    <div class="container">
+        <div class="category-tabs" id="categoryTabs">
+            <button class="cat-tab active" data-category="all">
+                <span class="cat-icon">🍽️</span> All
+            </button>
+            <button class="cat-tab" data-category="rice">
+                <span class="cat-icon">🍚</span> Rice Dishes
+            </button>
+            <button class="cat-tab" data-category="swallow">
+                <span class="cat-icon">🥣</span> Swallow & Soups
+            </button>
+            <button class="cat-tab" data-category="snacks">
+                <span class="cat-icon">🫓</span> Snacks
+            </button>
+            <button class="cat-tab" data-category="proteins">
+                <span class="cat-icon">🥩</span> Proteins
+            </button>
+            <button class="cat-tab" data-category="bowls">
+                <span class="cat-icon">⭐</span> Bowl Specials
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<main class="main-content">
+    <div class="container">
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults" style="display:none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No dishes found</h3>
+            <p>Try a different search term or browse our categories</p>
+        </div>
+
+        <!-- Menu Grid — populated by JS -->
+        <div id="menuContainer"></div>
+
+    </div>
+</main>
+
+<!-- ===================== CART SIDEBAR ===================== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>Your Order</h3>
+        <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <div class="cart-empty">
+            <span>🛒</span>
+            <p>Your cart is empty</p>
+        </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+        <div class="cart-total">
+            <span>Total</span>
+            <span id="cartTotal">QAR 0.00</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+</aside>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <h3>Helen's Kitchen</h3>
+            <p>Bringing the authentic taste of Nigeria to your doorstep.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Catering</a>
+        </div>
+        <div class="footer-links">
+            <h4>Hours</h4>
+            <p>Mon–Sat: 10am – 10pm</p>
+            <p>Sunday: 12pm – 9pm</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Helen's Kitchen. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- ===================== TOAST ===================== -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
