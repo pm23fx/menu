@@ -172,6 +172,8 @@ a{text-decoration:none;color:inherit}
 .cart-tot{display:flex;justify-content:space-between;font-weight:700;margin-bottom:14px}
 .ck-btn{width:100%;padding:14px;background:var(--c1);color:#fff;font-size:.92rem;font-weight:700;border-radius:var(--r);transition:var(--tr)}
 .ck-btn:hover{background:var(--c1d)}
+.checkout-meta{margin-top:10px;font-size:.72rem;line-height:1.45;color:var(--muted)}
+.checkout-meta a{color:var(--c1);font-weight:700}
 
 /* ===== TOAST ===== */
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:#fff;padding:12px 26px;border-radius:var(--pill);font-size:.82rem;font-weight:600;z-index:600;opacity:0;transition:all .3s ease;pointer-events:none;white-space:nowrap}
@@ -273,7 +275,8 @@ a{text-decoration:none;color:inherit}
   <div class="cart-body" id="cartBody"><div class="cart-empty"><span>🛒</span><p>Your cart is empty</p></div></div>
   <div class="cart-ft" id="cartFt" style="display:none">
     <div class="cart-tot"><span>Total</span><span id="cartTot">QAR 0.00</span></div>
-    <button class="ck-btn">Proceed to Checkout</button>
+    <button class="ck-btn" id="checkoutBtn">Checkout on WhatsApp</button>
+    <p class="checkout-meta">Orders will be sent to <a href="https://wa.me/97400000000" target="_blank" rel="noreferrer" id="checkoutLink">WhatsApp</a>. Replace the number in the code with your business line.</p>
   </div>
 </aside>
 
@@ -353,13 +356,67 @@ const ITEMS=[
 
 // ---- STATE ----
 let cart=[], activeCat='all', searchQ='';
+const WHATSAPP_CHECKOUT_NUMBER='97400000000';
+const WHATSAPP_DISPLAY='+974 0000 0000';
 
 // ---- DOM ----
 const $=s=>document.querySelector(s);
 const menuArea=$('#menuArea'), catScroll=$('#catScroll'), noRes=$('#noRes');
 const modalBg=$('#modalBg'), modal=$('#modal');
 const cartBtn=$('#cartBtn'), cartBadge=$('#cartBadge'), cartSb=$('#cartSb'), cartOv=$('#cartOv'), cartBody=$('#cartBody'), cartFt=$('#cartFt'), cartTot=$('#cartTot');
+const checkoutBtn=$('#checkoutBtn'), checkoutLink=$('#checkoutLink');
 const toastEl=$('#toast');
+
+if(checkoutLink){
+  checkoutLink.href=`https://wa.me/${WHATSAPP_CHECKOUT_NUMBER}`;
+  checkoutLink.textContent=`WhatsApp ${WHATSAPP_DISPLAY}`;
+}
+
+function normalizeImageUrl(url){
+  if(!url)return FALLBACK;
+  return url.includes('/wiki/Special:FilePath/')
+    ? url.replace('/wiki/Special:FilePath/','/wiki/Special:Redirect/file/')
+    : url;
+}
+
+function imageAttr(url){
+  return normalizeImageUrl(url);
+}
+
+function cleanPrice(value){
+  const amount=parseFloat(String(value||'').replace(/[^0-9.]/g,''));
+  return Number.isFinite(amount)?amount:NaN;
+}
+
+function moneyText(value){
+  return Number.isFinite(value)?`QAR ${value.toFixed(2)}`:'Price TBD';
+}
+
+function buildCheckoutMessage(){
+  const lines=[
+    "Hello Helen's Kitchen, I'd like to place this order:",
+    ''
+  ];
+  let total=0;
+
+  cart.forEach((item,index)=>{
+    const itemPrice=cleanPrice(item.price);
+    const addonLines=(item.addons||[]).map(addon=>{
+      const addonPrice=cleanPrice(addon.price);
+      if(!isNaN(addonPrice))total+=addonPrice*addon.qty;
+      return `   - ${addon.qty} x ${addon.name}${!isNaN(addonPrice)?` (${moneyText(addonPrice)})`:''}`;
+    });
+
+    if(!isNaN(itemPrice))total+=itemPrice*item.qty;
+    lines.push(`${index+1}. ${item.qty} x ${item.name}${!isNaN(itemPrice)?` (${moneyText(itemPrice)})`:''}`);
+    if(addonLines.length)lines.push(...addonLines);
+  });
+
+  lines.push('');
+  lines.push(`Estimated total: ${total>0?moneyText(total):'To be confirmed'}`);
+  lines.push(`Order source: ${window.location.href}`);
+  return lines.join('\n');
+}
 
 // ---- RENDER CATEGORIES ----
 function renderCats(){
@@ -417,7 +474,7 @@ function cardHTML(i,bowl){
   const tags=i.tags.map(t=>`<span class="ftag ftag-${t.c}">${t.t}</span>`).join('');
   return `<article class="fcard${bowl?' bowl':''}" data-id="${i.id}">
     <div class="fcard-img">
-      <img src="${i.img}" alt="${i.name}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK}'">
+      <img src="${imageAttr(i.img)}" alt="${i.name}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK}'">
       ${tags?`<div class="fcard-tags">${tags}</div>`:''}
     </div>
     <div class="fcard-body">
@@ -440,7 +497,7 @@ function openModal(id){
 
   modal.innerHTML=`
     <div class="modal-hero">
-      <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null;this.src='${FALLBACK}'">
+      <img src="${imageAttr(item.img)}" alt="${item.name}" onerror="this.onerror=null;this.src='${FALLBACK}'">
       <button class="modal-close" id="mClose">✕</button>
     </div>
     <div class="modal-scroll">
@@ -463,7 +520,7 @@ function openModal(id){
         <p class="addon-sub">Add extras to your meal</p>
         ${addons.map(a=>`
         <div class="addon-item" data-aid="${a.id}">
-          <div class="addon-img"><img src="${a.img}" alt="${a.name}" onerror="this.onerror=null;this.src='${FALLBACK}'"></div>
+          <div class="addon-img"><img src="${imageAttr(a.img)}" alt="${a.name}" onerror="this.onerror=null;this.src='${FALLBACK}'"></div>
           <div class="addon-info">
             <div class="an">${a.name}</div>
             <div class="ap"><input type="text" placeholder="QAR 0.00" class="addon-price-input" style="border:1px solid #EDE8E0;border-radius:6px;padding:3px 8px;font-size:.72rem;width:80px;font-weight:600;outline:none"></div>
@@ -512,10 +569,10 @@ function openModal(id){
         const aid=row.dataset.aid;
         const ao=ADDONS.find(a=>a.id===aid);
         const apInput=row.querySelector('.addon-price-input');
-        selectedAddons.push({name:ao.name,qty:aq,price:apInput?apInput.value.trim():'',img:ao.img});
+        selectedAddons.push({name:ao.name,qty:aq,price:apInput?apInput.value.trim():'',img:imageAttr(ao.img)});
       }
     });
-    cart.push({id:item.id,name:item.name,img:item.img,qty,price,addons:selectedAddons});
+    cart.push({id:item.id,name:item.name,img:imageAttr(item.img),qty,price,addons:selectedAddons});
     updateCart();
     closeModal();
     toast(`${qty}× ${item.name} added to your order!`);
@@ -542,8 +599,14 @@ function updateCart(){
   cartFt.style.display='';
   let money=0;
   cartBody.innerHTML=cart.map((ci,idx)=>{
-    const np=parseFloat((ci.price||'').replace(/[^0-9.]/g,''));
+    const np=cleanPrice(ci.price);
     if(!isNaN(np))money+=np*ci.qty;
+    if(ci.addons&&ci.addons.length){
+      ci.addons.forEach(addon=>{
+        const addonPrice=cleanPrice(addon.price);
+        if(!isNaN(addonPrice))money+=addonPrice*addon.qty;
+      });
+    }
     // addon summary
     const addonTxt=ci.addons&&ci.addons.length? ci.addons.map(a=>`${a.qty}× ${a.name}`).join(', '):'';
     return `<div class="ci">
@@ -565,6 +628,14 @@ function closeCart(){cartSb.classList.remove('open');cartOv.classList.remove('op
 cartBtn.onclick=openCart;
 $('#cartX').onclick=closeCart;
 cartOv.onclick=closeCart;
+checkoutBtn.onclick=()=>{
+  if(!cart.length){
+    toast('Add at least one item before checkout.');
+    return;
+  }
+  const url=`https://wa.me/${WHATSAPP_CHECKOUT_NUMBER}?text=${encodeURIComponent(buildCheckoutMessage())}`;
+  window.open(url,'_blank','noopener,noreferrer');
+};
 
 // ---- SEARCH ----
 $('#searchInput').addEventListener('input',e=>{searchQ=e.target.value.trim();renderMenu()});
