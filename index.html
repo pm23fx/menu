@@ -3,162 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helen's Kitchen — Nigerian Cuisine</title>
+    <title>Helen's Kitchen | Build Your Order</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<!-- ===================== HEADER ===================== -->
-<header class="header">
-    <div class="header-top">
-        <div class="container header-inner">
-            <div class="brand">
-                <div class="brand-icon">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="18" fill="#D4380D" stroke="#FBBF24" stroke-width="2"/>
-                        <path d="M12 26C12 26 14 18 20 18C26 18 28 26 28 26" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
-                        <circle cx="20" cy="14" r="3" fill="#FBBF24"/>
-                        <path d="M16 24L20 20L24 24" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+    <header class="hero-shell">
+        <div class="container hero-grid">
+            <section class="hero-copy">
+                <div class="eyebrow">Talabat-style ordering</div>
+                <h1>Choose the meal, set the portions, then add your extras.</h1>
+                <p class="hero-text">
+                    Each dish opens a customizer so customers can order exactly what they want: more chicken, fish, water, extra proteins, and special instructions.
+                </p>
+                <div class="hero-actions">
+                    <a href="#menuSection" class="btn btn-primary">Start Order</a>
+                    <button class="btn btn-secondary" id="openCartHero" type="button">View Cart</button>
                 </div>
-                <div class="brand-text">
-                    <h1>Helen's Kitchen</h1>
-                    <p class="brand-tagline">Authentic Nigerian Cuisine</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <strong>Custom portions</strong>
+                        <span>Per meal, not just per dish</span>
+                    </div>
+                    <div class="stat-card">
+                        <strong>Add-ons</strong>
+                        <span>Chicken, fish, drinks, extras</span>
+                    </div>
+                    <div class="stat-card">
+                        <strong>Cleaner visuals</strong>
+                        <span>Illustrative dish cards, not wrong photos</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hero-panel">
+                <div class="hero-panel-top">
+                    <span class="badge">Build example</span>
+                    <span class="service-pill">1 Rice & stew + 2 chicken + 1 fish + 2 water</span>
+                </div>
+                <div class="spotlight-card" id="spotlightCard"></div>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <strong>How it works</strong>
+                        <span>Tap a meal card, pick portions, choose extras, then add the customized order to cart.</span>
+                    </div>
+                    <div class="service-card">
+                        <strong>Checkout</strong>
+                        <span>The WhatsApp summary lists every selected extra so the kitchen sees the exact request.</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </header>
+
+    <main class="container layout" id="menuSection">
+        <section class="content">
+            <section class="controls-card">
+                <div class="search-field">
+                    <label for="searchInput">Search dishes</label>
+                    <input id="searchInput" type="text" placeholder="Try rice, stew, egusi, fish, chicken...">
+                </div>
+                <div class="category-row" id="categoryRow"></div>
+                <p class="helper-note">Dish covers below are illustrative placeholders until you replace them with your real meal photos.</p>
+            </section>
+
+            <section class="menu-list-section">
+                <div class="menu-toolbar">
+                    <div>
+                        <span class="section-kicker">Menu</span>
+                        <h2 id="menuTitle">All dishes</h2>
+                    </div>
+                    <p id="menuSummary">Select a dish to customize portions and extras.</p>
+                </div>
+                <div class="no-results hidden" id="noResults">
+                    <h3>No dishes matched your search.</h3>
+                    <p>Try another word or switch category.</p>
+                </div>
+                <div class="menu-grid" id="menuGrid"></div>
+            </section>
+        </section>
+
+        <aside class="cart-panel" id="cartPanel">
+            <div class="cart-head">
+                <div>
+                    <span class="section-kicker">Order summary</span>
+                    <h2>Your cart</h2>
+                </div>
+                <button class="close-cart" id="closeCart" type="button" aria-label="Close cart">×</button>
+            </div>
+
+            <div class="cart-list" id="cartList"></div>
+
+            <div class="cart-empty" id="cartEmpty">
+                <strong>No items yet</strong>
+                <p>Open a meal and configure the portions and add-ons you want.</p>
+            </div>
+
+            <div class="cart-form">
+                <div class="field">
+                    <label for="customerName">Customer name</label>
+                    <input id="customerName" type="text" placeholder="Customer name">
+                </div>
+                <div class="field">
+                    <label for="deliveryType">Delivery type</label>
+                    <select id="deliveryType">
+                        <option value="Delivery">Delivery</option>
+                        <option value="Pickup">Pickup</option>
+                        <option value="Catering enquiry">Catering enquiry</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="orderNotes">General notes</label>
+                    <textarea id="orderNotes" placeholder="Landmark, spice note, event note, delivery note..."></textarea>
                 </div>
             </div>
-            <div class="header-actions">
-                <button class="cart-btn" id="cartBtn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                    <span class="cart-count" id="cartCount">0</span>
-                </button>
+
+            <div class="cart-footer">
+                <div class="total-row">
+                    <span>Total</span>
+                    <strong id="cartTotal">QAR 0</strong>
+                </div>
+                <div class="quick-buttons">
+                    <button class="btn btn-secondary" id="clearCartBtn" type="button">Clear cart</button>
+                    <button class="btn btn-primary" id="checkoutBtn" type="button">Checkout on WhatsApp</button>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <div class="modal-backdrop hidden" id="customizeModal">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalDishName">
+            <div class="modal-head">
+                <div>
+                    <span class="section-kicker">Customize meal</span>
+                    <h2 id="modalDishName">Dish</h2>
+                    <p id="modalDishDesc">Choose portions and extras.</p>
+                </div>
+                <button class="close-cart" id="closeModal" type="button" aria-label="Close customizer">×</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="dish-hero" id="modalDishHero"></div>
+
+                <section class="option-block">
+                    <div class="option-row">
+                        <div>
+                            <strong>Portions</strong>
+                            <p>How many meal portions do you want?</p>
+                        </div>
+                        <div class="qty-stepper large">
+                            <button class="qty-btn" type="button" id="portionMinus">−</button>
+                            <span class="qty-value" id="portionCount">1</span>
+                            <button class="qty-btn" type="button" id="portionPlus">+</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="option-block">
+                    <div class="option-head">
+                        <strong>Add-ons</strong>
+                        <p>Pick extra proteins, drinks, or sides for this meal.</p>
+                    </div>
+                    <div class="addons-list" id="addonsList"></div>
+                </section>
+
+                <section class="option-block">
+                    <div class="field">
+                        <label for="lineItemNotes">Meal note</label>
+                        <textarea id="lineItemNotes" placeholder="Example: extra stew, mild spice, separate pack..."></textarea>
+                    </div>
+                </section>
+            </div>
+
+            <div class="modal-footer">
+                <div class="modal-total">
+                    <span>Meal total</span>
+                    <strong id="modalTotal">QAR 0</strong>
+                </div>
+                <button class="btn btn-primary" id="confirmAddBtn" type="button">Add customized meal</button>
             </div>
         </div>
     </div>
 
-    <!-- Hero Banner -->
-    <div class="hero">
-        <div class="container hero-content">
-            <span class="hero-badge">🔥 Freshly Made Daily</span>
-            <h2 class="hero-title">Taste the<br><em>Soul of Nigeria</em></h2>
-            <p class="hero-sub">From smoky Suya to rich Egusi — delivered with love</p>
-            <div class="search-wrap">
-                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                <input type="text" id="searchInput" placeholder="Search jollof, egusi, suya..." autocomplete="off">
-                <button class="search-clear" id="searchClear" style="display:none;">✕</button>
-            </div>
-        </div>
-    </div>
-</header>
+    <button class="floating-cart" id="floatingCart" type="button">
+        <span>Cart</span>
+        <strong id="floatingCount">0</strong>
+    </button>
 
-<!-- ===================== PROMO STRIP ===================== -->
-<section class="promo-strip">
-    <div class="container promo-scroll">
-        <div class="promo-card">
-            <span class="promo-emoji">🚀</span>
-            <div><strong>Fast Delivery</strong><br><small>30-45 mins</small></div>
-        </div>
-        <div class="promo-card">
-            <span class="promo-emoji">🌶️</span>
-            <div><strong>Spice Level</strong><br><small>Your choice</small></div>
-        </div>
-        <div class="promo-card">
-            <span class="promo-emoji">🥘</span>
-            <div><strong>Fresh Daily</strong><br><small>Made to order</small></div>
-        </div>
-        <div class="promo-card">
-            <span class="promo-emoji">⭐</span>
-            <div><strong>4.9 Rating</strong><br><small>500+ reviews</small></div>
-        </div>
-    </div>
-</section>
+    <div class="toast" id="toast"></div>
 
-<!-- ===================== CATEGORY TABS ===================== -->
-<nav class="category-nav" id="categoryNav">
-    <div class="container">
-        <div class="category-tabs" id="categoryTabs">
-            <button class="cat-tab active" data-category="all">
-                <span class="cat-icon">🍽️</span> All
-            </button>
-            <button class="cat-tab" data-category="rice">
-                <span class="cat-icon">🍚</span> Rice Dishes
-            </button>
-            <button class="cat-tab" data-category="swallow">
-                <span class="cat-icon">🥣</span> Swallow & Soups
-            </button>
-            <button class="cat-tab" data-category="snacks">
-                <span class="cat-icon">🫓</span> Snacks
-            </button>
-            <button class="cat-tab" data-category="proteins">
-                <span class="cat-icon">🥩</span> Proteins
-            </button>
-            <button class="cat-tab" data-category="bowls">
-                <span class="cat-icon">⭐</span> Bowl Specials
-            </button>
-        </div>
-    </div>
-</nav>
-
-<!-- ===================== MAIN ===================== -->
-<main class="main-content">
-    <div class="container">
-        <div class="no-results" id="noResults" style="display:none;">
-            <div class="no-results-icon">🔍</div>
-            <h3>No dishes found</h3>
-            <p>Try a different search term or browse our categories</p>
-        </div>
-        <div id="menuContainer"></div>
-    </div>
-</main>
-
-<!-- ===================== CART SIDEBAR ===================== -->
-<div class="cart-overlay" id="cartOverlay"></div>
-<aside class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-        <h3>Your Order</h3>
-        <button class="cart-close" id="cartClose">✕</button>
-    </div>
-    <div class="cart-items" id="cartItems">
-        <div class="cart-empty"><span>🛒</span><p>Your cart is empty</p></div>
-    </div>
-    <div class="cart-footer" id="cartFooter" style="display:none;">
-        <div class="cart-total">
-            <span>Total</span>
-            <span id="cartTotal">QAR 0.00</span>
-        </div>
-        <button class="checkout-btn">Proceed to Checkout</button>
-    </div>
-</aside>
-
-<!-- ===================== FOOTER ===================== -->
-<footer class="footer">
-    <div class="container footer-inner">
-        <div class="footer-brand">
-            <h3>Helen's Kitchen</h3>
-            <p>Bringing the authentic taste of Nigeria to your doorstep.</p>
-        </div>
-        <div class="footer-links">
-            <h4>Quick Links</h4>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Catering</a>
-        </div>
-        <div class="footer-links">
-            <h4>Hours</h4>
-            <p>Mon–Sat: 10am – 10pm</p>
-            <p>Sunday: 12pm – 9pm</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Helen's Kitchen. All rights reserved.</p>
-    </div>
-</footer>
-
-<!-- Toast Notification -->
-<div class="toast" id="toast"></div>
-
-<script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
