@@ -1,6 +1,6 @@
 const STORAGE_KEY = "helens-kitchen-cart-v3";
 const DETAILS_KEY = "helens-kitchen-details-v2";
-const WHATSAPP_NUMBER = "97433284470";
+const WHATSAPP_NUMBER = "97471021381";
 
 const categories = [
     { id: "all", label: "All dishes" },
