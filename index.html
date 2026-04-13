@@ -95,6 +95,8 @@ a{text-decoration:none;color:inherit}
 .fcard-bot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:12px}
 .prot{display:inline-flex;align-items:center;gap:4px;background:#ECFDF5;color:#047857;font-size:.68rem;font-weight:700;padding:4px 10px;border-radius:var(--pill)}
 .prot svg{width:12px;height:12px}
+.price-stack{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.menu-price{font-size:1rem;font-weight:800;color:var(--c1);line-height:1}
 .add-btn{display:flex;align-items:center;gap:5px;padding:8px 16px;background:var(--c1);color:#fff;border-radius:var(--pill);font-size:.78rem;font-weight:700;transition:var(--tr)}
 .add-btn:hover{background:var(--c1d)}
 .add-btn svg{width:14px;height:14px}
@@ -287,7 +289,7 @@ a{text-decoration:none;color:inherit}
 <footer class="ftr">
   <div class="ftr-in">
     <div><h3>Helen's Kitchen</h3><p>Bringing the authentic taste of Nigeria to your doorstep. Every dish is prepared fresh daily with love and tradition.</p></div>
-    <div><h4>Quick Links</h4><a href="#">About Us</a><a href="#">Contact</a></div>
+    <div><h4>Quick Links</h4><a href="#">About Us</a><a href="#">Contact</a><a href="#">Catering</a></div>
     <div><h4>Hours</h4><p>Mon – Sat: 10am – 10pm</p><p>Sunday: 12pm – 9pm</p></div>
   </div>
   <div class="ftr-btm">&copy; 2026 Helen's Kitchen. All rights reserved.</div>
@@ -300,14 +302,14 @@ a{text-decoration:none;color:inherit}
 
 // ---- ADD-ONS (with images) ----
 const ADDONS = [
-  {id:'chicken',name:'Extra Chicken',price:'',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Fried_chicken_%28Ely%2C_Minnesota%29.jpg/320px-Fried_chicken_%28Ely%2C_Minnesota%29.jpg'},
-  {id:'beef',name:'Extra Beef',price:'',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Grilled_beef_steak.jpg/320px-Grilled_beef_steak.jpg'},
-  {id:'turkey',name:'Extra Turkey',price:'',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Fried_Turkey.jpg/320px-Fried_Turkey.jpg'},
-  {id:'fish',name:'Fried Fish',price:'',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20fish%2002.jpg'},
-  {id:'plantain',name:'Fried Plantain',price:'',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20plantain.jpg'},
-  {id:'egg',name:'Boiled Egg',price:'',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Boiling%20Eggs.jpg'},
-  {id:'water',name:'Bottled Water',price:'',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mineral_water_bottle.jpg/200px-Mineral_water_bottle.jpg'},
-  {id:'drink',name:'Soft Drink / Malt',price:'',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Fanta_Coca-Cola_Sprite_in_Ikeja_Lagos.jpg/320px-Fanta_Coca-Cola_Sprite_in_Ikeja_Lagos.jpg'},
+  {id:'chicken',name:'Extra Chicken',price:12,img:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Fried_chicken_%28Ely%2C_Minnesota%29.jpg/320px-Fried_chicken_%28Ely%2C_Minnesota%29.jpg'},
+  {id:'beef',name:'Extra Beef',price:14,img:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Grilled_beef_steak.jpg/320px-Grilled_beef_steak.jpg'},
+  {id:'turkey',name:'Extra Turkey',price:14,img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Fried_Turkey.jpg/320px-Fried_Turkey.jpg'},
+  {id:'fish',name:'Fried Fish',price:16,img:'https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20fish%2002.jpg'},
+  {id:'plantain',name:'Fried Plantain',price:6,img:'https://commons.wikimedia.org/wiki/Special:FilePath/Fried%20plantain.jpg'},
+  {id:'egg',name:'Boiled Egg',price:4,img:'https://commons.wikimedia.org/wiki/Special:FilePath/Boiling%20Eggs.jpg'},
+  {id:'water',name:'Bottled Water',price:3,img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mineral_water_bottle.jpg/200px-Mineral_water_bottle.jpg'},
+  {id:'drink',name:'Soft Drink / Malt',price:5,img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Fanta_Coca-Cola_Sprite_in_Ikeja_Lagos.jpg/320px-Fanta_Coca-Cola_Sprite_in_Ikeja_Lagos.jpg'},
 ];
 
 const FALLBACK='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/400px-Good_Food_Display_-_NCI_Visuals_Online.jpg';
@@ -323,35 +325,35 @@ const CATS=[
 
 const ITEMS=[
   // Rice
-  {id:1,cat:'rice',name:'Jollof Rice with Chicken',desc:'Smoky, tomato-rich party jollof rice served with perfectly seasoned grilled chicken and fried plantain.',protein:'32g',tags:[{t:'Popular',c:'pop'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20Rice%20and%20Chicken.jpg',addons:['chicken','beef','fish','plantain','egg','water','drink']},
-  {id:2,cat:'rice',name:'Fried Rice with Turkey',desc:'Colourful Nigerian fried rice loaded with mixed vegetables, liver and tender turkey pieces.',protein:'28g',tags:[],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Nigerian_Fried_Rice.jpg/400px-Nigerian_Fried_Rice.jpg',addons:['turkey','chicken','fish','plantain','water','drink']},
-  {id:3,cat:'rice',name:'Ofada Rice with Sauce',desc:'Local unpolished short-grain ofada rice served with spicy green pepper ayamase sauce and assorted meat.',protein:'22g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Ofada%20Rice.jpg',addons:['beef','chicken','plantain','egg','water','drink']},
-  {id:4,cat:'rice',name:'White Rice and Stew',desc:'Fluffy white rice drizzled with rich, pepper-infused tomato stew. Add your choice of protein.',protein:'20g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Rice%2C%20Fried%20Plantains%20and%20Palm%20fruits%20Stew.jpg',addons:['chicken','beef','turkey','fish','plantain','water','drink']},
+  {id:1,cat:'rice',name:'Jollof Rice with Chicken',desc:'Smoky, tomato-rich party jollof rice served with perfectly seasoned grilled chicken and fried plantain.',price:28,protein:'32g',tags:[{t:'Popular',c:'pop'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20Rice%20and%20Chicken.jpg',addons:['chicken','beef','fish','plantain','egg','water','drink']},
+  {id:2,cat:'rice',name:'Fried Rice with Turkey',desc:'Colourful Nigerian fried rice loaded with mixed vegetables, liver and tender turkey pieces.',price:30,protein:'28g',tags:[],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Nigerian_Fried_Rice.jpg/400px-Nigerian_Fried_Rice.jpg',addons:['turkey','chicken','fish','plantain','water','drink']},
+  {id:3,cat:'rice',name:'Ofada Rice with Sauce',desc:'Local unpolished short-grain ofada rice served with spicy green pepper ayamase sauce and assorted meat.',price:32,protein:'22g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Ofada%20Rice.jpg',addons:['beef','chicken','plantain','egg','water','drink']},
+  {id:4,cat:'rice',name:'White Rice and Stew',desc:'Fluffy white rice drizzled with rich, pepper-infused tomato stew. Add your choice of protein.',price:24,protein:'20g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Rice%2C%20Fried%20Plantains%20and%20Palm%20fruits%20Stew.jpg',addons:['chicken','beef','turkey','fish','plantain','water','drink']},
 
   // Swallow & Soups
-  {id:5,cat:'swallow',name:'Egusi Soup with Pounded Yam',desc:'Thick melon seed soup with spinach, stockfish and assorted meat, paired with smooth pounded yam.',protein:'35g',tags:[{t:'Popular',c:'pop'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pounded%20Yam%20and%20Egusi%20Soup.jpg',addons:['beef','chicken','fish','water','drink']},
-  {id:6,cat:'swallow',name:'Efo Riro with Amala',desc:'Rich Yoruba-style spinach stew with palm oil, locust beans, assorted meat. Served with smooth amala.',protein:'30g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Efo%20riro.jpg',addons:['beef','fish','water','drink']},
-  {id:7,cat:'swallow',name:'Ogbono Soup with Garri',desc:'Draw soup made from ground ogbono seeds with okra, stockfish and beef. Served with smooth eba.',protein:'28g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Ogbono%20soup%20with%20assorted%20meats.jpg',addons:['beef','fish','water','drink']},
-  {id:8,cat:'swallow',name:'White Melon Soup (Egusi Traditional)',desc:'Traditional egusi variation with white melon seeds, ugu leaves and palm oil. Rich and authentic.',protein:'33g',tags:[],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Egusi_soup_1.jpg/400px-Egusi_soup_1.jpg',addons:['beef','chicken','fish','water','drink']},
+  {id:5,cat:'swallow',name:'Egusi Soup with Pounded Yam',desc:'Thick melon seed soup with spinach, stockfish and assorted meat, paired with smooth pounded yam.',price:35,protein:'35g',tags:[{t:'Popular',c:'pop'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pounded%20Yam%20and%20Egusi%20Soup.jpg',addons:['beef','chicken','fish','water','drink']},
+  {id:6,cat:'swallow',name:'Efo Riro with Amala',desc:'Rich Yoruba-style spinach stew with palm oil, locust beans, assorted meat. Served with smooth amala.',price:33,protein:'30g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Efo%20riro.jpg',addons:['beef','fish','water','drink']},
+  {id:7,cat:'swallow',name:'Ogbono Soup with Garri',desc:'Draw soup made from ground ogbono seeds with okra, stockfish and beef. Served with smooth eba.',price:34,protein:'28g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Ogbono%20soup%20with%20assorted%20meats.jpg',addons:['beef','fish','water','drink']},
+  {id:8,cat:'swallow',name:'White Melon Soup (Egusi Traditional)',desc:'Traditional egusi variation with white melon seeds, ugu leaves and palm oil. Rich and authentic.',price:34,protein:'33g',tags:[],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Egusi_soup_1.jpg/400px-Egusi_soup_1.jpg',addons:['beef','chicken','fish','water','drink']},
 
   // Snacks
-  {id:9,cat:'snacks',name:'Moi Moi',desc:'Steamed bean pudding seasoned with peppers, onions and garnished with boiled egg and mackerel.',protein:'18g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Moin%20Moin.jpg',addons:['egg','water','drink']},
-  {id:10,cat:'snacks',name:'Akara',desc:'Crispy deep-fried bean cakes — golden outside, fluffy inside. A beloved Nigerian breakfast snack.',protein:'14g',tags:[{t:'Popular',c:'pop'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Akara_%28food%29.jpg/400px-Akara_%28food%29.jpg',addons:['egg','water','drink']},
+  {id:9,cat:'snacks',name:'Moi Moi',desc:'Steamed bean pudding seasoned with peppers, onions and garnished with boiled egg and mackerel.',price:10,protein:'18g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Moin%20Moin.jpg',addons:['egg','water','drink']},
+  {id:10,cat:'snacks',name:'Akara',desc:'Crispy deep-fried bean cakes — golden outside, fluffy inside. A beloved Nigerian breakfast snack.',price:8,protein:'14g',tags:[{t:'Popular',c:'pop'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Akara_%28food%29.jpg/400px-Akara_%28food%29.jpg',addons:['egg','water','drink']},
 
   // Proteins
-  {id:11,cat:'proteins',name:'Suya (Beef)',desc:'Spicy skewered beef coated in yaji seasoning, grilled over open flame with sliced onions and tomatoes.',protein:'42g',tags:[{t:'Popular',c:'pop'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Suya%20in%20Abuja.jpg',addons:['beef','water','drink']},
-  {id:12,cat:'proteins',name:'Pepper Soup (Goat Meat)',desc:'Aromatic peppery broth with tender goat meat, uziza and scent leaves. Ultimate comfort food.',protein:'38g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pepper%20soup%20with%20goat%20meat.jpg',addons:['beef','water','drink']},
+  {id:11,cat:'proteins',name:'Suya (Beef)',desc:'Spicy skewered beef coated in yaji seasoning, grilled over open flame with sliced onions and tomatoes.',price:25,protein:'42g',tags:[{t:'Popular',c:'pop'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Suya%20in%20Abuja.jpg',addons:['beef','water','drink']},
+  {id:12,cat:'proteins',name:'Pepper Soup (Goat Meat)',desc:'Aromatic peppery broth with tender goat meat, uziza and scent leaves. Ultimate comfort food.',price:29,protein:'38g',tags:[],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pepper%20soup%20with%20goat%20meat.jpg',addons:['beef','water','drink']},
 
   // Bowl Specials
-  {id:13,cat:'bowls',name:'Egusi Soup (Bowl Only)',desc:'Generous bowl of rich egusi soup with assorted meat and stockfish. No swallow included.',protein:'30g',tags:[{t:'Bowl Only',c:'bowl'},{t:'No Swallow',c:'ns'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pounded%20yam%20and%20egusi%20soup.jpg',addons:['beef','chicken','fish','water','drink']},
-  {id:14,cat:'bowls',name:'Efo Riro (Bowl Only)',desc:'Bowl of luxurious spinach stew with palm oil, locust beans and assorted meat.',protein:'26g',tags:[{t:'Bowl Only',c:'bowl'},{t:'No Swallow',c:'ns'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Efo%20Riro.jpg',addons:['beef','fish','water','drink']},
-  {id:15,cat:'bowls',name:'Ogbono Soup (Bowl Only)',desc:'Draw soup bowl with okra, stockfish and beef. Light and protein-packed.',protein:'25g',tags:[{t:'Bowl Only',c:'bowl'},{t:'No Swallow',c:'ns'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Ogbono%20Soup.jpg',addons:['beef','fish','water','drink']},
-  {id:16,cat:'bowls',name:'White Melon Soup (Bowl Only)',desc:'Traditional white egusi in a generous single-serve bowl.',protein:'28g',tags:[{t:'Bowl Only',c:'bowl'},{t:'Single Portion',c:'sp'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Egusi_Soup_and_Pounded_Yam.jpg/400px-Egusi_Soup_and_Pounded_Yam.jpg',addons:['beef','chicken','water','drink']},
-  {id:17,cat:'bowls',name:'Goat Meat Pepper Soup (Bowl)',desc:'Steaming bowl of aromatic goat pepper soup with uziza and scent leaves.',protein:'35g',tags:[{t:'Bowl Only',c:'bowl'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pepper%20soup%20with%20goat%20meat.jpg',addons:['beef','water','drink']},
-  {id:18,cat:'bowls',name:'Chicken Pepper Soup (Bowl)',desc:'Light, spicy chicken broth with herbs and whole pepper.',protein:'30g',tags:[{t:'Bowl Only',c:'bowl'},{t:'Single Portion',c:'sp'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken%20pepper%20soup.jpg',addons:['chicken','water','drink']},
-  {id:19,cat:'bowls',name:'Bowl of Jollof Rice',desc:'Single-portion bowl of our signature smoky party jollof rice.',protein:'18g',tags:[{t:'Bowl Only',c:'bowl'},{t:'Single Portion',c:'sp'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Jollof_Rice_with_Stew_and_Chicken.jpg/400px-Jollof_Rice_with_Stew_and_Chicken.jpg',addons:['chicken','beef','plantain','water','drink']},
-  {id:20,cat:'bowls',name:'Bowl of Fried Rice',desc:'Single bowl of colourful Nigerian fried rice with vegetables and liver.',protein:'15g',tags:[{t:'Bowl Only',c:'bowl'},{t:'Single Portion',c:'sp'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Nigerian_Fried_Rice.jpg/400px-Nigerian_Fried_Rice.jpg',addons:['turkey','chicken','plantain','water','drink']},
-  {id:21,cat:'bowls',name:'Bowl of Tomato Stew (No Rice)',desc:'Rich, pepper-infused tomato stew served solo. Perfect as a sauce or light meal.',protein:'8g',tags:[{t:'Bowl Only',c:'bowl'},{t:'No Swallow',c:'ns'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Nigerian_stew.jpg/400px-Nigerian_stew.jpg',addons:['beef','chicken','fish','water','drink']},
+  {id:13,cat:'bowls',name:'Egusi Soup (Bowl Only)',desc:'Generous bowl of rich egusi soup with assorted meat and stockfish. No swallow included.',price:24,protein:'30g',tags:[{t:'Bowl Only',c:'bowl'},{t:'No Swallow',c:'ns'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pounded%20yam%20and%20egusi%20soup.jpg',addons:['beef','chicken','fish','water','drink']},
+  {id:14,cat:'bowls',name:'Efo Riro (Bowl Only)',desc:'Bowl of luxurious spinach stew with palm oil, locust beans and assorted meat.',price:23,protein:'26g',tags:[{t:'Bowl Only',c:'bowl'},{t:'No Swallow',c:'ns'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Efo%20Riro.jpg',addons:['beef','fish','water','drink']},
+  {id:15,cat:'bowls',name:'Ogbono Soup (Bowl Only)',desc:'Draw soup bowl with okra, stockfish and beef. Light and protein-packed.',price:24,protein:'25g',tags:[{t:'Bowl Only',c:'bowl'},{t:'No Swallow',c:'ns'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Ogbono%20Soup.jpg',addons:['beef','fish','water','drink']},
+  {id:16,cat:'bowls',name:'White Melon Soup (Bowl Only)',desc:'Traditional white egusi in a generous single-serve bowl.',price:24,protein:'28g',tags:[{t:'Bowl Only',c:'bowl'},{t:'Single Portion',c:'sp'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Egusi_Soup_and_Pounded_Yam.jpg/400px-Egusi_Soup_and_Pounded_Yam.jpg',addons:['beef','chicken','water','drink']},
+  {id:17,cat:'bowls',name:'Goat Meat Pepper Soup (Bowl)',desc:'Steaming bowl of aromatic goat pepper soup with uziza and scent leaves.',price:27,protein:'35g',tags:[{t:'Bowl Only',c:'bowl'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pepper%20soup%20with%20goat%20meat.jpg',addons:['beef','water','drink']},
+  {id:18,cat:'bowls',name:'Chicken Pepper Soup (Bowl)',desc:'Light, spicy chicken broth with herbs and whole pepper.',price:25,protein:'30g',tags:[{t:'Bowl Only',c:'bowl'},{t:'Single Portion',c:'sp'}],img:'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken%20pepper%20soup.jpg',addons:['chicken','water','drink']},
+  {id:19,cat:'bowls',name:'Bowl of Jollof Rice',desc:'Single-portion bowl of our signature smoky party jollof rice.',price:18,protein:'18g',tags:[{t:'Bowl Only',c:'bowl'},{t:'Single Portion',c:'sp'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Jollof_Rice_with_Stew_and_Chicken.jpg/400px-Jollof_Rice_with_Stew_and_Chicken.jpg',addons:['chicken','beef','plantain','water','drink']},
+  {id:20,cat:'bowls',name:'Bowl of Fried Rice',desc:'Single bowl of colourful Nigerian fried rice with vegetables and liver.',price:19,protein:'15g',tags:[{t:'Bowl Only',c:'bowl'},{t:'Single Portion',c:'sp'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Nigerian_Fried_Rice.jpg/400px-Nigerian_Fried_Rice.jpg',addons:['turkey','chicken','plantain','water','drink']},
+  {id:21,cat:'bowls',name:'Bowl of Tomato Stew (No Rice)',desc:'Rich, pepper-infused tomato stew served solo. Perfect as a sauce or light meal.',price:15,protein:'8g',tags:[{t:'Bowl Only',c:'bowl'},{t:'No Swallow',c:'ns'}],img:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Nigerian_stew.jpg/400px-Nigerian_stew.jpg',addons:['beef','chicken','fish','water','drink']},
 ];
 
 // ---- STATE ----
@@ -368,7 +370,7 @@ const checkoutBtn=$('#checkoutBtn'), checkoutLink=$('#checkoutLink');
 const toastEl=$('#toast');
 
 if(checkoutLink){
-  checkoutLink.href=`https://wa.me/${97471021381}`;
+  checkoutLink.href=`https://wa.me/${WHATSAPP_CHECKOUT_NUMBER}`;
   checkoutLink.textContent=`WhatsApp ${WHATSAPP_DISPLAY}`;
 }
 
@@ -390,6 +392,10 @@ function cleanPrice(value){
 
 function moneyText(value){
   return Number.isFinite(value)?`QAR ${value.toFixed(2)}`:'Price TBD';
+}
+
+function priceInputValue(value){
+  return Number.isFinite(value)?`QAR ${value.toFixed(2)}`:'';
 }
 
 function buildCheckoutMessage(){
@@ -482,7 +488,10 @@ function cardHTML(i,bowl){
       <h3>${i.name}</h3>
       <p class="fcard-desc">${i.desc}</p>
       <div class="fcard-bot">
-        <span class="prot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>${i.protein}</span>
+        <div class="price-stack">
+          <span class="menu-price">${moneyText(i.price)}</span>
+          <span class="prot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>${i.protein}</span>
+        </div>
         <span class="add-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add</span>
       </div>
     </div>
@@ -523,7 +532,7 @@ function openModal(id){
           <div class="addon-img"><img src="${imageAttr(a.img)}" alt="${a.name}" onerror="this.onerror=null;this.src='${FALLBACK}'"></div>
           <div class="addon-info">
             <div class="an">${a.name}</div>
-            <div class="ap"><input type="text" placeholder="QAR 0.00" class="addon-price-input" style="border:1px solid #EDE8E0;border-radius:6px;padding:3px 8px;font-size:.72rem;width:80px;font-weight:600;outline:none"></div>
+            <div class="ap"><input type="text" value="${priceInputValue(a.price)}" placeholder="QAR 0.00" class="addon-price-input" style="border:1px solid #EDE8E0;border-radius:6px;padding:3px 8px;font-size:.72rem;width:90px;font-weight:600;outline:none"></div>
           </div>
           <div class="addon-qty">
             <button class="aminus">−</button>
@@ -535,7 +544,7 @@ function openModal(id){
 
       <div class="price-row">
         <label>Price per portion:</label>
-        <input type="text" id="mPrice" placeholder="QAR 0.00">
+        <input type="text" id="mPrice" value="${priceInputValue(item.price)}" placeholder="QAR 0.00">
       </div>
     </div>
     <div class="modal-foot">
@@ -633,7 +642,7 @@ checkoutBtn.onclick=()=>{
     toast('Add at least one item before checkout.');
     return;
   }
-  const url=`https://wa.me/${97471021381}?text=${encodeURIComponent(buildCheckoutMessage())}`;
+  const url=`https://wa.me/${WHATSAPP_CHECKOUT_NUMBER}?text=${encodeURIComponent(buildCheckoutMessage())}`;
   window.open(url,'_blank','noopener,noreferrer');
 };
 
