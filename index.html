@@ -356,8 +356,8 @@ const ITEMS=[
 
 // ---- STATE ----
 let cart=[], activeCat='all', searchQ='';
-const WHATSAPP_CHECKOUT_NUMBER='97400000000';
-const WHATSAPP_DISPLAY='+974 0000 0000';
+const WHATSAPP_CHECKOUT_NUMBER='97471021381';
+const WHATSAPP_DISPLAY='+974 7102 1381';
 
 // ---- DOM ----
 const $=s=>document.querySelector(s);
@@ -368,7 +368,7 @@ const checkoutBtn=$('#checkoutBtn'), checkoutLink=$('#checkoutLink');
 const toastEl=$('#toast');
 
 if(checkoutLink){
-  checkoutLink.href=`https://wa.me/${WHATSAPP_CHECKOUT_NUMBER}`;
+  checkoutLink.href=`https://wa.me/${97471021381}`;
   checkoutLink.textContent=`WhatsApp ${WHATSAPP_DISPLAY}`;
 }
 
@@ -633,7 +633,7 @@ checkoutBtn.onclick=()=>{
     toast('Add at least one item before checkout.');
     return;
   }
-  const url=`https://wa.me/${WHATSAPP_CHECKOUT_NUMBER}?text=${encodeURIComponent(buildCheckoutMessage())}`;
+  const url=`https://wa.me/${97471021381}?text=${encodeURIComponent(buildCheckoutMessage())}`;
   window.open(url,'_blank','noopener,noreferrer');
 };
 
